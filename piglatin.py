@@ -7,7 +7,7 @@ print('''
 print('''
     Rules:
 
-    Please enter a word that is three characters or longer. 
+    Please enter a word that is three characters or longer.
 
     For words that begin with consonant sounds, all letters before
     the initial vowel are placed at the end of the word sequence. Then, "ay" is
@@ -42,16 +42,27 @@ print('''
 def translator(word):
     '''when passed a string, translates string to piglatin'''
 
+    #make sure the word is long enough to translate
     if len(word) < 3:
         print('please use a longer word')
 
+    #check if the word starts with consonant, consonant cluster or vowel
     else:
+        word = word.lower()
         vowels = ['a', 'e', 'i', 'o', 'u', 'y']
 
         if word[0] in vowels:
-            print('word starts with {}'.format(word[0]))
+            piglatin_translation = word + 'ay'
+            print('The piglatin translation for \'{}\' is \'{}\''.format(word, piglatin_translation))
         else:
-            print('letter starts with consonant')
+            if word[1] in vowels:
+                first_letter = word[0]
+                new_string = word[1:]
+                piglatin_translation = new_string + first_letter + 'ay'
+                print('The piglatin translation for \'{}\' is \'{}\''.format(word, piglatin_translation))
+            else:
+                print('word starts with consonant cluster')
 
 
-translator('')
+
+translator('Hips')
