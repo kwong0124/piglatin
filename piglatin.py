@@ -6,6 +6,9 @@ print('''
     ''')
 print('''
     Rules:
+
+    Please enter a word that is three characters or longer. 
+
     For words that begin with consonant sounds, all letters before
     the initial vowel are placed at the end of the word sequence. Then, "ay" is
     added, as in the following examples:
@@ -33,3 +36,22 @@ print('''
     "are" = "areay"
     "egg" = "eggay"
     ''')
+
+
+
+def translator(word):
+    '''when passed a string, translates string to piglatin'''
+
+    if len(word) < 3:
+        print('please use a longer word')
+
+    else:
+        vowels = ['a', 'e', 'i', 'o', 'u', 'y']
+
+        if word[0] in vowels:
+            print('word starts with {}'.format(word[0]))
+        else:
+            print('letter starts with consonant')
+
+
+translator('')
