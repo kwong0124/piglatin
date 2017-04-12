@@ -58,4 +58,4 @@ def translator(word):
                 print('The piglatin translation for \'{}\' is \'{}\''.format(word, piglatin_translation))
 
 if __name__ == '__main__':
-    translator('ship')
+    translator(input('Please enter the word you would like to translate: '))
