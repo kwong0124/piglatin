@@ -1,6 +1,5 @@
-# Piglatin game
+# Piglatin translator
 
-# Prints game directions to the screen
 print('''
     Welcome to the Piglatin game!
     ''')
@@ -8,7 +7,7 @@ print('''
 print('''
     Rules:
 
-    Please enter one word (no spaces) that is at least three characters.
+    Please enter the phrase you would like to translate, without punctuation
 
     For words that begin with consonant sounds, all letters before
     the initial vowel are placed at the end of the word sequence.
@@ -25,14 +24,14 @@ print('''
 
 def translator(sentence):
     '''when passed a string, translates string to piglatin'''
-    # Checks that the input string is long enough to translate. Then determines
+    # Starts by splitting the string into a list of strings
+    # Checks that each string is long enough to translate. If not, adds the un-
+    # translated string to the translated_phrases string.
+    # If the word is three characters or longer, translator determines
     # whether the word starts with a consonant, consonant cluster or vowel.
-    # if the word starts with a vowel, the translator adds 'ay' to the end of
-    # the word. If the word starts with a consonant, translator emoves the first
-    # letter of the word, and adds it to the end of the word along with 'ay'.
-    # if the word starts with a consonant cluster, the consonant cluster is
-    # removed from the beginning of the word and appended to the end of the
-    # string along with 'ay'
+    # If the word starts with a vowel, call volwel translate.
+    # If the word starts with a consonant, call consonant_translate
+    # If the word starts with a consonant cluster, call cluster_translate.
 
     word_list = sentence.split(' ')
     translated_phrase = ''
@@ -47,23 +46,36 @@ def translator(sentence):
             vowels = ['a', 'e', 'i', 'o', 'u', 'y']
 
             if word[0] in vowels:
-                piglatin_translation = word + 'ay '
+                piglatin_translation = vowel_translate(word)
                 translated_phrase = translated_phrase + piglatin_translation
 
             else:
                 if word[1] in vowels:
-                    first_letter = word[0]
-                    new_string = word[1:]
-                    piglatin_translation = new_string + first_letter + 'ay '
+                    piglatin_translation = consonant_translate(word)
                     translated_phrase = translated_phrase + piglatin_translation
 
                 else:
-                    cluster = word[:2]
-                    new_string = word[2:]
-                    piglatin_translation = new_string + cluster + 'ay '
+                    piglatin_translation = cluster_translate(word)
                     translated_phrase = translated_phrase + piglatin_translation
 
     return translated_phrase
+
+
+def vowel_translate(word):
+    return word + 'ay '
+
+
+def consonant_translate(word):
+    first_letter = word[0]
+    new_string = word[1:]
+    return new_string + first_letter + 'ay '
+
+
+def cluster_translate(word):
+    cluster = word[:2]
+    new_string = word[2:]
+    return new_string + cluster + 'ay '
+
 
 if __name__ == '__main__':
     print(translator(input('Please enter the phrase you would like to translate: ')))
