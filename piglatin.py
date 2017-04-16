@@ -1,4 +1,5 @@
 # Piglatin translator
+# translates english to Piglatin
 
 print('''
     Welcome to the Piglatin game!
